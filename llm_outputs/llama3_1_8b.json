@@ -1,0 +1,35 @@
+{
+  "topic": "Describing Motion",
+  "grade": "Grade 9",
+  "duration_minutes": 3,
+  "total_words": 416,
+  "scenes": [
+    {
+      "id": 1,
+      "timestamp": 0,
+      "text": "Hello students, today we're going to learn about motion. We'll explore what it means for an object to be at rest or in motion, and how we can describe this motion."
+    },
+    {
+      "id": 2,
+      "timestamp": 30,
+      "text": "Let's take a look at the example on the board. A car moves from point A to point C, and then it moves back to point A. Can you spot the difference between the distance covered and the displacement?"
+    },
+    {
+      "id": 3,
+      "timestamp": "1:00",
+      "text": "Think about the odometer in your car. It measures the distance travelled, but what about the displacement? Can you think of a real-life scenario where the displacement would be greater than the distance travelled?"
+    },
+    {
+      "id": 4,
+      "timestamp": "1:40",
+      "text": "Now, let's talk about uniform motion and non-uniform motion. If an object covers equal distances in equal intervals of time, it's said to be in uniform motion. But if it covers unequal distances in equal intervals of time, it's non-uniform motion."
+    },
+    {
+      "id": 5,
+      "timestamp": "2:30",
+      "text": "Before we wrap up, think about the bowling speed sign in figure 7.2(a). What does it mean? And what does the signboard in figure 7.2(b) tell us about the motion of the roller coaster?"
+    }
+  ],
+  "real_life_example": "An object moving from point A to point C and then back to point A",
+  "recap": "Motion is the change in position of an object over time. We can describe motion by specifying a reference point and measuring the distance covered and the displacement. Uniform motion and non-uniform motion are types of motion where the object covers equal or unequal distances in equal intervals of time."
+}
