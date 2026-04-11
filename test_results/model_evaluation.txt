@@ -1,0 +1,40 @@
+MODEL EVALUATION REPORT
+============================================================
+
+FILE: c:\Users\ayush\Xplorex_demo\gen ai internship\llm_outputs\llama3_1_8b.txt
+STATUS: PASS
+HAS_REQUIRED_FIELDS: True
+SCENE_COUNT: 5 (need 5)
+SCENE_COUNT_OK: True
+WORD_COUNT: 407 (need 350-550)
+WORD_COUNT_OK: True
+
+FILE: c:\Users\ayush\Xplorex_demo\gen ai internship\llm_outputs\mistral_output.txt
+STATUS: PASS
+HAS_REQUIRED_FIELDS: True
+SCENE_COUNT: 5 (need 5)
+SCENE_COUNT_OK: True
+WORD_COUNT: 485 (need 350-550)
+WORD_COUNT_OK: True
+
+FILE: c:\Users\ayush\Xplorex_demo\gen ai internship\llm_outputs\phi_output.txt
+STATUS: REVIEW
+HAS_REQUIRED_FIELDS: True
+SCENE_COUNT: 0 (need 5)
+SCENE_COUNT_OK: False
+WORD_COUNT: 68 (need 350-550)
+WORD_COUNT_OK: False
+
+FILE: c:\Users\ayush\Xplorex_demo\gen ai internship\llm_outputs\qwen2.5_7b_output.txt
+STATUS: PASS
+HAS_REQUIRED_FIELDS: True
+SCENE_COUNT: 5 (need 5)
+SCENE_COUNT_OK: True
+WORD_COUNT: 415 (need 350-550)
+WORD_COUNT_OK: True
+
+SUMMARY
+============================================================
+TOTAL_FILES: 4
+PASSED: 3
+REVIEW: 1

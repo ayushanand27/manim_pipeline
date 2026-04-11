@@ -40,8 +40,7 @@ Feed chunks to multiple LLM models with standardized prompt.
 ```
 You are an educational video script writer.
 Using only the source content below, generate a 3-minute video script for Grade 9.
-Return only valid JSON with:
-topic, grade, duration_minutes, total_words, scenes (5 scenes), real_life_example, recap.
+Return only plain text with no JSON.
 
 Rules:
 - exactly 5 scenes
@@ -53,33 +52,44 @@ Rules:
 **For each LLM model:**
 1. Load the chunk text from `extraction_outputs/chunks/chunk_1.txt` (or other chunks)
 2. Send to LLM with the prompt above
-3. Copy the JSON output
+3. Copy the plain-text output
 
 **Save outputs with model name:**
 ```
-llm_outputs/llama3_1_8b.json
-llm_outputs/mistral_7b.json
-llm_outputs/gpt4o.json
-llm_outputs/claude_opus.json
+llm_outputs/llama3_1_8b.txt
+llm_outputs/mistral_7b.txt
+llm_outputs/gpt4o.txt
+llm_outputs/claude_opus.txt
 ```
 
-**Output Format (JSON):**
-```json
-{
-  "topic": "Motion and Distance Displacement",
-  "grade": 9,
-  "duration_minutes": 3,
-  "total_words": 450,
-  "scenes": [
-    {"scene": 1, "title": "...", "content": "..."},
-    {"scene": 2, "title": "...", "content": "..."},
-    {"scene": 3, "title": "...", "content": "..."},
-    {"scene": 4, "title": "...", "content": "..."},
-    {"scene": 5, "title": "...", "content": "..."}
-  ],
-  "real_life_example": "...",
-  "recap": "..."
-}
+**Output Format (Plain Text):**
+```text
+TITLE: Motion and Distance Displacement
+GRADE: 9
+DURATION: 3 minutes
+
+SCENE 1: ...
+Visuals: ...
+Narration: ...
+
+SCENE 2: ...
+Visuals: ...
+Narration: ...
+
+SCENE 3: ...
+Visuals: ...
+Narration: ...
+
+SCENE 4: ...
+Visuals: ...
+Narration: ...
+
+SCENE 5: recap
+Visuals: ...
+Narration: ...
+
+REAL-LIFE EXAMPLE: ...
+RECAP: ...
 ```
 
 ---
@@ -88,25 +98,11 @@ llm_outputs/claude_opus.json
 Compare LLM outputs against quality criteria.
 
 ```bash
-python -c "import json; files=['llm_outputs/llama3_1_8b.json','llm_outputs/mistral_7b.json']; print('MODEL EVALUATION'); print('='*60); 
-for f in files:
- d=json.load(open(f,'r',encoding='utf-8'));
- scenes=d.get('scenes',[]);
- words=d.get('total_words',0);
- ok_json=isinstance(d,dict);
- has_core=all(k in d for k in ['topic','grade','duration_minutes','total_words','scenes','real_life_example','recap']);
- scene_count_ok=(len(scenes)==5);
- word_ok=(isinstance(words,int) and 400<=words<=500);
- print(f'\n{f}');
- print('  valid_json:',ok_json);
- print('  has_required_fields:',has_core);
- print('  scenes_count:',len(scenes),'(need 5)');
- print('  words:',words,'(need 400-500)');
- print('  status:', 'PASS' if (ok_json and has_core and scene_count_ok and word_ok) else 'REVIEW');"
+python .\scripts\phase4_evaluation.py --inputs llm_outputs\llama3_1_8b.txt llm_outputs\mistral_7b.txt --output test_results\model_evaluation.txt
 ```
 
 **Evaluation Criteria:**
-- ✅ Valid JSON format
+- ✅ Plain text output
 - ✅ All required fields present
 - ✅ Exactly 5 scenes
 - ✅ Word count: 400-500

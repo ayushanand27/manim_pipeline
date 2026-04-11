@@ -15,7 +15,7 @@ def main():
         "grade": 9,
         "duration_minutes": 3,
         "source_length": len(data.get("extracted_text", "")),
-        "note": "Feed source text to your selected LLM and paste model output into llm_outputs/*.json",
+        "note": "Feed source text to your selected LLM and paste model output into llm_outputs/*.txt",
     }
 
     out = Path(args.output)

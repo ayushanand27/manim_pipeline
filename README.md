@@ -1,13 +1,13 @@
 # Gen AI Internship - NCERT Video Script Pipeline
 
-This repository extracts chapter text from NCERT PDFs, creates page and grouped chunks, supports manual LLM generation, and evaluates generated script JSON outputs.
+This repository extracts chapter text from NCERT PDFs, creates page and grouped chunks, supports manual LLM generation, and evaluates generated script outputs in either plain text or JSON.
 
 ## Repository Structure
 
 - `scripts/` - all Python automation scripts
 - `iesc1dd/` - source NCERT PDFs
 - `extraction_outputs/` - extracted text plus page/group chunks per chapter
-- `llm_outputs/` - model JSON outputs
+- `llm_outputs/` - model plain-text script outputs
 - `test_results/` - evaluation outputs and validation artifacts
 - `ncert_extracts/` - curated text extracts
 - `docs/` - supplementary docs
@@ -71,17 +71,17 @@ Recommended manual flow per chapter/group:
 
 1. Copy content from `chunks_grouped` or `extracted_text.txt`.
 2. Paste the common prompt from `video_script_prompt.txt`.
-3. Save model output JSON into `llm_outputs/`.
+3. Save model output as plain text or JSON into `llm_outputs/`.
 
 Example naming:
 
-- `llm_outputs/llama3_1_8b_iesc107.json`
-- `llm_outputs/mistral_7b_iesc107.json`
+- `llm_outputs/llama3_1_8b_iesc107.txt`
+- `llm_outputs/mistral_7b_iesc107.txt`
 
 ### 5) Evaluation
 
 ```powershell
-python .\scripts\phase4_evaluation.py --inputs llm_outputs\llama3_1_8b.json llm_outputs\mistral_7b.json --output test_results\model_evaluation.json
+python .\scripts\phase4_evaluation.py --inputs llm_outputs\llama3_1_8b.txt llm_outputs\mistral_7b.txt --output test_results\model_evaluation.txt
 ```
 
 ### 6) Recovery and versioned outputs
@@ -89,7 +89,7 @@ python .\scripts\phase4_evaluation.py --inputs llm_outputs\llama3_1_8b.json llm_
 Save timestamped model output and create snapshot:
 
 ```powershell
-python .\scripts\save_model_output.py --model llama3_1_8b --input .\llm_outputs\llama3_1_8b.json
+python .\scripts\save_model_output.py --model llama3_1_8b --input .\llm_outputs\llama3_1_8b.txt
 ```
 
 Restore latest snapshot:

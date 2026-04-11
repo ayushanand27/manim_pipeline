@@ -7,25 +7,36 @@ TASK:
 Generate a video script on topic: {TOPIC} for Grade {GRADE}
 
 OUTPUT FORMAT:
-Return ONLY valid JSON with NO additional text:
+Return ONLY plain text with no JSON, no markdown code fences, and no extra explanation.
 
-{
-  "topic": "{TOPIC}",
-  "grade": {GRADE},
-  "duration_minutes": 3,
-  "total_words": 0,
-  "scenes": [
-    {
-      "scene_number": 1,
-      "title": "string",
-      "duration_seconds": 30,
-      "visuals": "string - describe what appears on screen",
-      "narration": "string - what the narrator says"
-    }
-  ],
-  "real_life_example": "string - one example from student's daily life",
-  "recap": "string - 2-3 sentence summary"
-}
+Use this structure:
+
+TITLE: {TOPIC}
+GRADE: {GRADE}
+DURATION: 3 minutes
+
+SCENE 1: title
+Visuals: ...
+Narration: ...
+
+SCENE 2: title
+Visuals: ...
+Narration: ...
+
+SCENE 3: title
+Visuals: ...
+Narration: ...
+
+SCENE 4: title
+Visuals: ...
+Narration: ...
+
+SCENE 5: recap
+Visuals: ...
+Narration: ...
+
+REAL-LIFE EXAMPLE: ...
+RECAP: ...
 
 RULES:
 1. Generate exactly 5 scenes
