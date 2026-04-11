@@ -1,0 +1,33 @@
+﻿{
+  "topic": "Understanding Matter",
+  "grade": 9,
+  "duration_minutes": 3,
+  "total_words": 450,
+  "scenes": [
+    {"scene_no": 1, "title": "Introduction to Matter", "narration": "Matter[7D[K
+"Matter surrounds us. It can be anything we see or touch like air, water, a[1D[K
+and rocks. Everything has mass and takes up space."},
+    {"scene_no": 2, "title": "The Nature of Matter - Continuous vs Particle[8D[K
+Particles", "narration": "For a long time, people thought matter was contin[6D[K
+continuous, like wood. But experiments show it's made of tiny particles, li[2D[K
+like salt or sugar in water."},
+    {"scene_no": 3, "title": "Activity: Dissolving Salt", "narration": "Tak[4D[K
+"Take half a beaker of water and add some salt. Stir with a rod. Observe ho[2D[K
+how the level doesn't change as the salt spreads into the spaces between wa[2D[K
+water particles."},
+    {"scene_no": 4, "title": "How Small Are These Particles?", "narration":[12D[K
+"narration": "Dissolve potassium permanganate in water to see how tiny its [K
+particles are. Even though we canΓÇÖt see them, they fill up all available sp[2D[K
+space."},
+    {"scene_no": 5, "title": "Recap of Key Points", "narration": "Matter is[2D[K
+is made of tiny particles that can spread into spaces without changing volu[4D[K
+volume. These particles make everything around us possible."}
+  ],
+  "real_life_example": "When you mix sugar in tea or coffee, it disappears [K
+into the liquid because its particles are so small and spread throughout th[2D[K
+the water molecules.",
+  "recap": "Matter is made of tiny particles that can fill spaces without c[1D[K
+changing volume. This explains why things like salt or sugar dissolve in li[2D[K
+liquids."
+}
+

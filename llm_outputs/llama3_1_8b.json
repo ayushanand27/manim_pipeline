@@ -1,35 +1,35 @@
 {
-  "topic": "Describing Motion",
-  "grade": "Grade 9",
+  "topic": "Matter in Our Surroundings",
+  "grade": 9,
   "duration_minutes": 3,
-  "total_words": 416,
+  "total_words": 445,
   "scenes": [
     {
-      "id": 1,
-      "timestamp": 0,
-      "text": "Hello students, today we're going to learn about motion. We'll explore what it means for an object to be at rest or in motion, and how we can describe this motion."
+      "scene_no": 1,
+      "title": "What is Matter?",
+      "narration": "Everything in this universe is made up of material which scientists have named 'matter'. The air we breathe, the food we eat, stones, clouds, stars, plants and animals are all matter. We can also see that all these things occupy space and have mass."
     },
     {
-      "id": 2,
-      "timestamp": 30,
-      "text": "Let's take a look at the example on the board. A car moves from point A to point C, and then it moves back to point A. Can you spot the difference between the distance covered and the displacement?"
+      "scene_no": 2,
+      "title": "Activity to Decide Nature of Matter",
+      "narration": "Let's perform an activity to decide about the nature of matter. Take a 100 mL beaker and fill half the beaker with water and mark the level of water. Dissolve some salt/sugar with the help of a glass rod. Observe any change in water level. What do you think has happened to the salt? Where does it disappear?"
     },
     {
-      "id": 3,
-      "timestamp": "1:00",
-      "text": "Think about the odometer in your car. It measures the distance travelled, but what about the displacement? Can you think of a real-life scenario where the displacement would be greater than the distance travelled?"
+      "scene_no": 3,
+      "title": "How Small are the Particles of Matter?",
+      "narration": "We can estimate the size of particles of matter by dissolving 2-3 crystals of potassium permanganate in 100 mL of water. Just a few crystals of potassium permanganate can colour a large volume of water (about 1000 L). So we conclude that there must be millions of tiny particles in just one crystal of potassium permanganate."
     },
     {
-      "id": 4,
-      "timestamp": "1:40",
-      "text": "Now, let's talk about uniform motion and non-uniform motion. If an object covers equal distances in equal intervals of time, it's said to be in uniform motion. But if it covers unequal distances in equal intervals of time, it's non-uniform motion."
+      "scene_no": 4,
+      "title": "Particles of Matter Have Space Between Them",
+      "narration": "When we mix tea leaves in water, the particles of tea leaves get into the spaces between particles of water. Similarly, when we add salt or sugar to water, the particles of salt or sugar get into the spaces between particles of water. This shows that there is enough space between particles of matter."
     },
     {
-      "id": 5,
-      "timestamp": "2:30",
-      "text": "Before we wrap up, think about the bowling speed sign in figure 7.2(a). What does it mean? And what does the signboard in figure 7.2(b) tell us about the motion of the roller coaster?"
+      "scene_no": 5,
+      "title": "Key Learning",
+      "narration": "Matter is made up of tiny particles that have space between them. These particles can be estimated to be very small using experiments with potassium permanganate. The particles of matter are continuously moving and have enough space between them."
     }
   ],
-  "real_life_example": "An object moving from point A to point C and then back to point A",
-  "recap": "Motion is the change in position of an object over time. We can describe motion by specifying a reference point and measuring the distance covered and the displacement. Uniform motion and non-uniform motion are types of motion where the object covers equal or unequal distances in equal intervals of time."
+  "real_life_example": "Mixing tea leaves in water",
+  "recap": "Matter is made up of tiny particles that have space between them. These particles can be estimated to be very small and are continuously moving."
 }

@@ -30,8 +30,94 @@ def configure_tesseract_path() -> None:
 
 def normalize_text(text: str) -> str:
     text = text.replace("\x00", " ")
+    # NCERT PDFs often include a duplicate print layer after footer marks like "Reprint 2025-26".
+    text = re.split(r"(?i)Reprint\s*20\d{2}\D*\d{2}", text, maxsplit=1)[0]
+
+    # Fix frequent PDF/OCR split-word artifacts seen in NCERT pages.
+    regex_replacements = [
+        (r"\bbr\s+eathe\b", "breathe"),
+        (r"\bdr\s+op\b", "drop"),
+        (r"\bfir\s+e\b", "fire"),
+        (r"\bnatur\s+e\b", "nature"),
+        (r"\bpr\s+operties\b", "properties"),
+        (r"\bdif\s+ferent\b", "different"),
+        (r"\bfor\s+ce\b", "force"),
+        (r"\br\s+each(es|ed)?\b", r"reach\1"),
+        (r"\bgr\s+eater\b", "greater"),
+        (r"\bcompr\s+ess(ible|ibility)?\b", r"compress\1"),
+        (r"\batmospher\s+e\b", "atmosphere"),
+        (r"\bper\s+manganate\b", "permanganate"),
+        (r"\bmetr\s+e\b", "metre"),
+    ]
+    for pattern, fixed in regex_replacements:
+        text = re.sub(pattern, fixed, text, flags=re.IGNORECASE)
+
+    # Direct fallback replacements for the most frequent broken words.
+    direct_replacements = {
+        "br eathe": "breathe",
+        "dr op": "drop",
+        "fir e": "fire",
+        "natur e": "nature",
+        "pr operties": "properties",
+        "dif ferent": "different",
+        "for ce": "force",
+        "ar ound": "around",
+        "thr ee": "three",
+        "lear n": "learn",
+        "Gr eek": "Greek",
+        "lar ge": "large",
+        "cof fee": "coffee",
+        "sur face": "surface",
+        "dif fuse": "diffuse",
+        "temperatur e": "temperature",
+        "ener gy": "energy",
+        "for m": "form",
+        "or der": "order",
+        "vapour isation": "vaporisation",
+        "gr eater": "greater",
+        "atmospher e": "atmosphere",
+        "per manganate": "permanganate",
+        "metr e": "metre",
+    }
+    for broken, fixed in direct_replacements.items():
+        text = text.replace(broken, fixed)
+
+    # Remove obvious OCR junk bursts and normalize repeated punctuation/spacing.
+    text = re.sub(r"[=~`_]{3,}", " ", text)
+    text = re.sub(r"([A-Za-z])\s{2,}([A-Za-z])", r"\1 \2", text)
     text = re.sub(r"\s+", " ", text).strip()
     return text
+
+
+def quality_score(text: str) -> float:
+    if not text:
+        return -1.0
+    alpha = len(re.findall(r"[A-Za-z]", text))
+    digits = len(re.findall(r"\d", text))
+    weird = len(re.findall(r"[^A-Za-z0-9\s.,;:!?()\-\[\]/]", text))
+    words = re.findall(r"[A-Za-z]+", text)
+    short_fragments = sum(1 for w in words if len(w) == 1)
+    # Higher is better: reward alphabetic content; penalize weird chars and noisy fragments.
+    return (alpha * 1.0) - (digits * 0.2) - (weird * 4.0) - (short_fragments * 1.5)
+
+
+def choose_page_text(direct: str, ocr_txt: str, force_ocr: bool) -> str:
+    direct = normalize_text(direct or "")
+    ocr_txt = normalize_text(ocr_txt or "")
+
+    # Native PDF text is usually cleaner for digital NCERT PDFs.
+    # Use OCR as a fallback only when native text is missing or too short.
+    if direct and len(direct) >= 180:
+        return direct
+
+    if force_ocr:
+        if ocr_txt:
+            return ocr_txt
+        return direct
+
+    if direct:
+        return direct
+    return ocr_txt
 
 
 def preprocess(img):
@@ -66,13 +152,14 @@ def extract(pdf_path: Path, use_ocr: bool, force_ocr: bool, max_chars: int, lang
     for i, p in enumerate(reader.pages, start=1):
         direct = normalize_text(p.extract_text() or "")
         page_text = direct
+        ocr_txt = ""
         if use_ocr and ocr_doc is not None and (force_ocr or not direct):
             try:
                 ocr_txt = normalize_text(ocr_page(ocr_doc, i - 1, dpi, psm, oem, lang))
-                if ocr_txt and ocr_txt not in direct:
-                    page_text = (direct + "\n" + ocr_txt).strip() if direct else ocr_txt
             except Exception as exc:
                 print(f"[Warning] OCR failed for page {i}: {exc}")
+
+        page_text = choose_page_text(direct, ocr_txt, force_ocr)
 
         if page_text:
             pages_breakdown.append({"page": i, "text": page_text})
